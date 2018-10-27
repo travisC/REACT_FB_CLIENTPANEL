@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { UserIsAuthenticated, UserIsNotAuthenticated } from "./helpers/auth";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -10,7 +11,7 @@ import AddClient from "./components/clients/AddClient";
 import ClientDetails from "./components/clients/ClientDetails";
 import EditClient from "./components/clients/EditClient";
 import Login from "./components/auth/Login";
-import { UserIsAuthenticated, UserIsNotAuthenticated } from "./helpers/auth";
+import Settings from "./components/settings/Settings";
 
 import "./App.css";
 
@@ -47,6 +48,11 @@ class App extends Component {
                   exact
                   path="/login"
                   component={UserIsNotAuthenticated(Login)}
+                />
+                <Route
+                  exact
+                  path="/settings"
+                  component={UserIsAuthenticated(Settings)}
                 />
               </Switch>
             </div>
